@@ -59,30 +59,29 @@
 		</div>
 
 		<div class="row2">
-		<div class="upper-header">
+            <div class="upper-header">
 
-			<div class="logo">
-				<a href="#"><img src="images/logo.png" alt=""></a>
-			</div>
-
-			<!-- Navigation -->
-			<nav id="nav">
-				<ul id="navlist" class="sf-menu clearfix">
-					<li class="current"><a href="<?= $this->Url->build(['controller' => 'Mediflex', 'action' => 'index']) ?>">Accueil</a></li>
-                    <?php if(isset($user)):?><!--Vérifie si l'utilisateur est conneecté et afficher son profiel'-->
-                        <li><a href="#"><?= $user->nom ?></a>
-                            <ul class="sub-menu">
-                                <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'profil']) ?>">Profil</a></li>
-                                <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'paiements']) ?>">Liste des paiements</a></li>
-                            </ul>
-                        </li>
-                    <?php endif;?>
-				</ul>
-			</nav>
-        	<!-- Navigation -->
-        	<div class="clear"></div>
-       </div>
-       <!-- End Upper Header -->
+                <div class="logo">
+                    <a href="#"><h3>Mediflex</h3></a>
+                </div>
+                <!-- Navigation -->
+                <nav id="nav">
+                    <ul id="navlist" class="sf-menu clearfix">
+                        <li class="current"><a href="<?= $this->Url->build(['controller' => 'Mediflex', 'action' => 'index']) ?>">Accueil</a></li>
+                        <?php if(isset($user)):?><!--Vérifie si l'utilisateur est conneecté et afficher son profiel'-->
+                            <li><a href="#"><?= $user->nom ?></a>
+                                <ul class="sub-menu">
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'profil']) ?>">Profil</a></li>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'paiements']) ?>">Liste des paiements</a></li>
+                                </ul>
+                            </li>
+                        <?php endif;?>
+                    </ul>
+                </nav>
+                <!-- Navigation -->
+                <div class="clear"></div>
+            </div>
+            <!-- End Upper Header -->
        </div>
        <!-- End Row2 -->
 
