@@ -53,7 +53,7 @@ class UsersController extends AppController {
 
     function signup(){
           $usersTable = TableRegistry::get('Users');
-          $new_user = $usersTable->newEntity();
+          $new_user = $usersTable->newEntity([]);
           if($this->request->is('post')){
             if(empty($this->request->getData()['password']) || $this->request->getData()['password'] != $this->request->getData()['password_verify']){
                 $this->Flash->set('Mots de passe différents !', ['element' => 'error']);
