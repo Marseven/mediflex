@@ -11,7 +11,7 @@ use Cake\Datasource\ConnectionManager;
 
 class UsersController extends AppController {
 
-    public function initialize()
+    public function initialize() : void
     {
         parent::initialize();
         $this->Auth->allow(['login', 'confirm', 'remember', 'resetPassword', 'signup', 'logout']);
