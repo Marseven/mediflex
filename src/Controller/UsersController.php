@@ -299,7 +299,113 @@ class UsersController extends AppController {
         }
     }
 
+    //fonction de paiment ebilling
     public function ebilling(){
 
+        // =============================================================
+		// ===================== Setup Attributes ======================
+		// =============================================================
+		// E-Billing server URL
+
+		$SERVER_URL = "http://lab.billing-easy.net/api/v1/merchant/e_bills";
+
+		// Username
+		$USER_NAME = 'aristide';
+
+		// SharedKey
+		$SHARED_KEY = 'a4e80739-61ea-430e-8ddc-db9eb7bf0783';
+
+		// POST URL
+		$POST_URL = 'http://sandbox.billing-easy.net';
+
+		// Check mandatory attributes have been supplied in Http Session
+        $user = $this->Auth->user();
+        $datas = $this->request->getData();
+        $reference = AppController::str_random(6);
+
+        // Fetch all data (including those not optional) from session
+		$eb_amount = $datas['montant'];
+		$eb_shortdescription = 'Paiement de la facture '.$datas['code_medecin'].' d\'une valeur de '.$datas['montant'].' FCFA.';
+		$eb_reference = $datas['code_medecin'].'-'.$reference;
+		$eb_email = $user['email'];
+		$eb_msisdn = $user['phone'];
+		$eb_name = $user['last_name'].' '.$user['first_name'];
+		$eb_address = $user['adress'];
+		$eb_city = $user['town'];
+		$eb_detaileddescription = 'Paiement de la facture '.$datas['code_medecin'].' d\'une valeur de '.$datas['montant'].' FCFA.';
+		$eb_additionalinfo = '';
+		$eb_callbackurl = '';
+
+		// =============================================================
+		// ============== E-Billing server invocation ==================
+		// =============================================================
+		$global_array =
+				[
+						'payer_email' => $eb_email,
+						'payer_msisdn' => $eb_msisdn,
+						'amount' => $eb_amount,
+						'short_description' => $eb_shortdescription,
+						'description' => $eb_detaileddescription,
+						'due_date' => date('d/m/Y', time() + 86400),
+						'external_reference' => $eb_reference,
+						'payer_name' => $eb_name,
+						'payer_address' => $eb_address,
+						'payer_city' => $eb_city,
+						'additional_info' => $eb_additionalinfo
+				];
+
+		$content = json_encode($global_array);
+		$curl = curl_init($SERVER_URL);
+		curl_setopt($curl, CURLOPT_USERPWD, $USER_NAME . ":" . $SHARED_KEY);
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+		$json_response = curl_exec($curl);
+
+		$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+		if ( $status != 201 ) {
+			$this->Flash->error("Error: call to URL  failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+			$this->redirect(['controller' => 'Ebillingpaymentapi', 'action' => 'pricing']);
+		}
+
+		curl_close($curl);
+
+		$response = json_decode($json_response, true);
+
+		$this->set('POST_URL', $POST_URL);
+		$this->set('response', $response);
+		$this->set('eb_callbackurl', $eb_callbackurl);
+    }
+
+    //page de resultat de la transaction
+    public function ebillig_success(){
+
+    }
+
+    //notification de paiement ebilling en arrière-plan
+    public function notificaation_eb(){
+        if($this->request->is('post')){
+			$connection = ConnectionManager::get('default');
+			$results = $connection
+			->execute(
+				"UPDATE paiement SET paymentsystem = '".$_POST['paymentsystem']."', transactionid = '".$_POST['transactionid']."', billingid = '".$_POST['billingid']."', amount = '".$_POST['amount']."', etat = '".$_POST['etat']."'  WHERE external_reference = ".$_POST['reference']
+			);
+			if($results){
+				http_response_code(200);
+				echo http_response_code();
+				exit();
+			}else{
+				http_response_code(401);
+				echo http_response_code();
+				exit();
+			}
+		}else{
+			http_response_code(402);
+			echo http_response_code();
+			exit();
+		}
     }
 }

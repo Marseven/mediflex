@@ -31,7 +31,7 @@ use Cake\I18n\FrozenTime;
  */
 class MediflexController extends AppController{
 
-    public function initialize()
+    public function initialize() : void
     {
         parent::initialize();
 
