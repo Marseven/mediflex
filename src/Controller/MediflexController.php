@@ -29,13 +29,13 @@ use Cake\I18n\FrozenTime;
  *
  * @link https://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class DeclarationsController extends AppController{
+class MediflexController extends AppController{
 
     public function initialize()
     {
         parent::initialize();
-        ini_set('memory_limit', '2G');
-        $this->Auth->allow(['index', 'faq', 'about']);
+
+        $this->Auth->allow(['index']);
         $user = $this->Auth->user();
         if($user){
             $user['confirmed_at'] = new FrozenTime($user['confirmed_at']);
@@ -45,7 +45,6 @@ class DeclarationsController extends AppController{
             $this->set('user', $user);
         }
 
-        $this->loadComponent('PhpExcel');
     }
 
     // Acceuil

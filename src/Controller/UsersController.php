@@ -82,6 +82,7 @@ class UsersController extends AppController {
                 $this->Flash->error('Mauvais type de fichier importé. Type correct : jpg, png, jpeg');
 
             }
+            $user->code_medecin = Appcontroller::str_random(8);
            if ($usersTable->save($user)) {
                 $link = array(
                     'controller' => 'users',
@@ -91,7 +92,7 @@ class UsersController extends AppController {
                 $user->confirmed_token = md5($user->Password);
                 $usersTable->save($user);
                 $mail = new Email();
-                $mail->setFrom('support@agappli.com')
+                $mail->setFrom('support@exemple.com')
                      ->setTo($user->email)
                      ->setSubject('Confirmation d\'enregistrement ')
                      ->setEmailFormat('html')
@@ -196,7 +197,7 @@ class UsersController extends AppController {
                 $user->reset_token = md5($user->password);
                 $usersTable->save($user);
                 $mail = new Email();
-                $mail->setFrom('support@agappli.com')
+                $mail->setFrom('support@exemple.com')
                     ->setTo($user->email)
                     ->setSubject('Mot de Passe Oublié')
                     ->setEmailFormat('html')
@@ -296,5 +297,9 @@ class UsersController extends AppController {
             $this->Flash->set('Le membre a été supprimé avec succès.', ['element' => 'success']);
             $this->redirect(['controller' => 'Users','action' => 'index']);
         }
+    }
+
+    public function ebilling(){
+
     }
 }
