@@ -17,7 +17,7 @@
 				<h4>Espace Médécin</h4>
 				<div class="border"></div>
 				<form  id="contact-form" action="#">
-                <?= $this->Form->create('Users', ['url' => ['controller' => 'Users','action' => 'login'], 'id' => 'contact-form']); ?>
+                <?= $this->Form->create($user, ['url' => ['controller' => 'Users','action' => 'login'], 'id' => 'contact-form']); ?>
 
                     <?= $this->Form->input('email', array(
                         'placeholder' => 'Email',

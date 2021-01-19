@@ -31,6 +31,9 @@ class UsersController extends AppController {
 	}
 
 	function login(){
+        $usersTable = TableRegistry::get('Users');
+        $user = $usersTable->newEntity([]);
+        $this->set('user', $user);
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
@@ -40,6 +43,7 @@ class UsersController extends AppController {
             }
             $this->Flash->error('Votre email ou mot de passe est incorrect.');
         }
+
     }
 
 
