@@ -66,7 +66,7 @@ $cakeDescription = 'Application Médicale';
 				<div class="subheader2">
                     <?php if(!isset($user)):?><!--Vérifie si l'utilisateur est conneecté et afficher son profiel'-->
                         <ul>
-                            <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'loin']) ?>">Connexion</a></li>
+                            <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Connexion</a></li>
                             <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'signup']) ?>">Inscription</a></li>
                         </ul>
                     <?php endif;?>

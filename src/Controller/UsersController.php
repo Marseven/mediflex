@@ -28,7 +28,6 @@ class UsersController extends AppController {
 
 	public function index(){
 
-        $this->render('profil', 'standard');
 	}
 
 	function login(){

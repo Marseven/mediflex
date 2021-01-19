@@ -17,10 +17,10 @@
 		<div class="inner-form">
 
 		<h4>Payer Une Facture</h4>
-		<form id="contact-form2" action="#">
+		<form id="contact-form2" action="<?= $this->Url->build(['controller' => 'Users', 'action' => 'ebilling']) ?>">
 			<div class="inputs">
-				<input name="name" id="name" type="text" data-value="Full Name">
-				<input name="mail" id="mail" type="text" data-value="E-mail Address">
+				<input name="name" id="name" type="text" data-value="code_medecin">
+				<input name="mail" id="mail" type="text" data-value="montant">
 	        </div>
 
 			<input id="submit_contact2" type="submit" value="Payer">

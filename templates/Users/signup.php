@@ -17,7 +17,7 @@
 			<div class="msg-form column12">
 				<h4>Inscription Médécin</h4>
 				<div class="border"></div>
-				<form  id="contact-form" action="#">
+				<?= $this->Form->create($new_user, ['id' => 'contact-form']); ?>
                     <?= $this->Form->input('nom', array(
                         'placeholder' => 'Nom',
                         'type' => 'text',
