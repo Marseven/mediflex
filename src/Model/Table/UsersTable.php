@@ -16,7 +16,7 @@ class UsersTable extends Table
 
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator) : Validator
     {
         $validator
             ->requirePresence('nom')
