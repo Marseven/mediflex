@@ -13,8 +13,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
  */
-
-$cakeDescription = 'Application Médicale';
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,9 +24,10 @@ $cakeDescription = 'Application Médicale';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->fetch('title') ?>
 
+    <?= $this->Html->css(['style', 'zebra', 'dr-framework', 'revslider', 'jquery.bxslider', 'responsive' ]) ?>
     <link rel="stylesheet" type="text/css" href="/css/fullwidth.html" media="screen" />
 
-    <?= $this->Html->css(['style', 'zebra', 'dr-framework', 'revslider', 'jquery.bxslider', 'responsive' ]) ?>
+
 
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -169,14 +168,12 @@ $cakeDescription = 'Application Médicale';
 		</div>
 	</div>
 	</footer>
-
+    <?= $this->Html->script(['jquery.min', 'jquery.flexslider', 'jquery.superfish', 'script', 'jquery.bxslider', 'zebra_datepicker', 'core' ]) ?>
 	<script type="text/javascript" charset="utf-8">
   		$(window).load(function() {
   		  $('.flexslider').flexslider();
   		});
 	</script>
-
-    <?= $this->Html->script(['jquery.min', 'jquery.flexslider', 'jquery.superfish', 'script', 'jquery.bxslider', 'zebra_datepicker', 'core' ]) ?>
     <?= $this->fetch('script') ?>
 
 </body>
