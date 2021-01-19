@@ -26,8 +26,9 @@ $cakeDescription = 'Application Médicale';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->fetch('title') ?>
 
+    <link rel="stylesheet" type="text/css" href="/css/fullwidth.html" media="screen" />
 
-    <?= $this->Html->css(['style', 'zebra', 'dr-framework', 'revslider', 'jquery.bxslider', 'responsive', 'fullwidth.html' ]) ?>
+    <?= $this->Html->css(['style', 'zebra', 'dr-framework', 'revslider', 'jquery.bxslider', 'responsive' ]) ?>
 
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
