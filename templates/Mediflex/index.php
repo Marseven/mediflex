@@ -19,7 +19,7 @@
 		<h4>Payer Une Facture</h4>
 		<form id="contact-form2" action="<?= $this->Url->build(['controller' => 'Users', 'action' => 'ebilling']) ?>">
 			<div class="inputs">
-				<input name="name" id="name" type="text" placeholder="code_medecin">
+				<input name="name" id="name" type="text" placeholder="code du medecin">
 				<input name="mail" id="mail" type="text" placeholder="montant">
 	        </div>
 
