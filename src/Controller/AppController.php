@@ -67,10 +67,6 @@ class AppController extends Controller
             'storage' => 'Session'
             ]
         );
-
-        $newslettersTable = TableRegistry::get('Newsletters');
-        $newsletter = $newslettersTable->newEntity();
-        $this->set(compact('newsletter'));
     }
 
     public function isAuthorized($user)
