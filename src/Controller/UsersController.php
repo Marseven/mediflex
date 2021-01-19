@@ -112,7 +112,7 @@ class UsersController extends AppController {
            }
         }
         $this->set('new_user', $new_user);
-        $this->render('signup', 'standard');
+        //$this->render('signup', 'standard');
     }
 
     function edit($id = null){
@@ -137,7 +137,7 @@ class UsersController extends AppController {
             }
         }
         $this->set('user_edit', $user);
-        $this->render('edit', 'standard');
+        //$this->render('edit', 'standard');
     }
 
     function confirm(){
