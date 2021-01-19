@@ -7,6 +7,7 @@ use Cake\ORM\TableRegistry;
 use Cake\Mailer\Email;
 use Cake\I18n\FrozenTime;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Datasource\ConnectionManager;
 
 class UsersController extends AppController {
 
